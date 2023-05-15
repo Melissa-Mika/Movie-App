@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Author: Melissa Mika
+     Date: 4/24/23
+     Project: Movie App
+    -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Tickets</title>
+
+    <script>
+        /* Since the titles were printing to the page with plus signs and other characters, etc, this function was created, which takes the titles incoming from the movie db API and removes all of these characters before printing to the page (+, -, %20, %21, %27). Within the function, the replace() method is used to replace each character with a space, except where %27 is replaced with an apostrophe as in the word "Pope's"*/
+        function cleanTitle(title) {
+            title = title.replace(/\+/g, ' ');//replaces + with a space
+            title = title.replace(/-/g, ' ');//replaces - with a space
+            title = title.replace(/%20/g, ' ');//replaces %20 with a space
+            title = title.replace(/%21/g, ' ');//replaces %21 with a space
+            title = title.replace(/%27/g, "'");//replaces %27 with an apostrophe
+            return title;
+        }
+    </script>
+
+    <!--Axios script-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Bad+Script&family=Berkshire+Swash&family=Caveat&family=Comic+Neue:wght@700&family=DM+Serif+Display&family=Dancing+Script&family=Indie+Flower&family=Kalam&family=Merienda&family=Neucha&family=Permanent+Marker&family=Rubik+Dirt&family=Rubik+Vinyl&family=Shadows+Into+Light&family=Sigmar+One&family=Special+Elite&display=swap"
+        rel="stylesheet">
+
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bad+Script&family=Berkshire+Swash&family=Caveat&family=Comic+Neue:wght@700&family=DM+Serif+Display&family=Dancing+Script&family=Foldit:wght@600&family=Indie+Flower&family=Itim&family=Kalam&family=Merienda&family=Neucha&family=Permanent+Marker&family=Rubik+Dirt&family=Rubik+Vinyl&family=Shadows+Into+Light&family=Sigmar+One&family=Special+Elite&display=swap" rel="stylesheet">
+
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+
+    <!--Link to css stylesheet-->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <!--Navigation-->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="purchase">Purchase Tickets</h1>
+
+    <h2 id="infoHeading">To complete your order, please complete the following form:</h2>
+
+    <!--Form-->
+    <form id="ticketForm">
+        <div class="mb-3">
+            <!--Get the user's name-->
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Please enter your name">
+            <!--A message box that displays error message if name field left blank-->
+            <span id="emptyName" style="display:none">Name field cannot be blank</span>
+
+            <!-- A message box that displays error message if characters are less than 5 -->
+            <span id="errName" style="display:none">Name must be at least 5 characters</span>
+        </div>
+
+
+        <div class="mb-3">
+            <!--Get the user's credit card number-->
+            <label for="card" class="form-label">Credit Card Number</label>
+            <input type="text" name="card" class="form-control" id="card" placeholder="Credit Card Number">
+            <!-- A message box that displays error message -->
+            <span id="errcard" style="display:none">Please enter a valid credit card number</span>
+        </div>
+
+        <input type="submit" value="submit" id="order">
+
+    </form>
+
+    <!--div for output of order information-->
+    <div id="output"></div>
+
+    <img src="popcorn2.jpg" alt="movie popcorn" id="popcorn">
+
+
+    <!--Bootstrap script-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>
